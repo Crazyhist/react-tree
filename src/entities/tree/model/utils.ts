@@ -1,12 +1,12 @@
-import { TreeNode } from '../types'
+import { FlattenedNode, TreeNode, TreeNodeWithDepth } from '../types'
 
 // Преобразование дерева в плоский массив
 export const flattenTree = (
 	data: TreeNode[],
 	expandedNodes: Set<string>
-): { id: string; name: string; depth: number }[] => {
-	const result: { id: string; name: string; depth: number }[] = []
-	const stack: { node: TreeNode; depth: number }[] = data.map((node) => ({
+): FlattenedNode[] => {
+	const result: FlattenedNode[] = []
+	const stack: TreeNodeWithDepth[] = data.map((node) => ({
 		node,
 		depth: 0,
 	}))
