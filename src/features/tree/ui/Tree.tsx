@@ -1,4 +1,4 @@
-import { flattenTree, TreeNode } from '@/entities/tree'
+import { flattenTree, TreeNode } from '@/shared/lib/tree'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
@@ -15,11 +15,11 @@ export const Tree = ({ data }: TreeProps) => {
 			const node = stack.pop()!
 			if (node.children) {
 				expandableNodes.add(node.id)
-				// stack.push(...node.children)
 			}
 		}
 		return expandableNodes
 	}
+
 	const [expandedNodes, setExpandedNodes] = useState<Set<string>>(
 		() => new Set()
 	)
@@ -65,9 +65,10 @@ export const Tree = ({ data }: TreeProps) => {
 						<div
 							key={item.id}
 							style={{
-								position: 'absolute',
-								top: `${virtualItem.start}px`,
-								left: `${item.depth * 16}px`,
+								position: 'relative',
+								top: 0,
+								left: 0,
+								paddingLeft: `${item.depth * 16}px`,
 								height: '30px',
 								lineHeight: '30px',
 								cursor: 'pointer',

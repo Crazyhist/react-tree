@@ -15,7 +15,6 @@ export const VirtualizedList = <T,>({
 	height,
 }: VirtualizedListProps<T>) => {
 	const parentRef = useRef<HTMLDivElement>(null)
-
 	const virtualizer = useVirtualizer({
 		count: items.length,
 		getScrollElement: () => parentRef.current,
